@@ -3,18 +3,6 @@ const mongoose=require("mongoose")
 
 const MONGOURI = "mongodb+srv://abhinav:N3!6aMQf4mDf!9a@cluster0.oyr2o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-const app=express();
-
-require("./models/user")
-mongoose.model("User")
-
-
-app.use(express.json())
-
-app.use(require('./routes/auth'))
-
-
-
 mongoose.connect(MONGOURI);
 
 mongoose.connection.on('connected',()=>{
@@ -26,8 +14,20 @@ mongoose.connection.on('error',(err)=>{
 })
 
 
+const app=express();
 
+require("./models/user")
+
+require("./models/post")
+
+
+
+app.use(express.json())
+
+app.use(require('./routes/auth'))
+app.use(require('./routes/post'))
 
 app.listen(3000,()=>{
     console.log("Server is running on 3000");
 })
+
