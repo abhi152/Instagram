@@ -27,7 +27,7 @@ app.use(express.json())
 app.use(require('./routes/auth'))
 app.use(require('./routes/post'))
 
-app.listen(3000,()=>{
-    console.log("Server is running on 3000");
+app.listen(5000,()=>{
+    console.log("Server is running on 5000");
 })
 

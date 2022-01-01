@@ -18,7 +18,7 @@ router.post("/signup",(req,res)=>{
     
     if(!name || !email || !password)
     {
-        res.status(422).json({message:"Fill all the field"})
+        res.status(422).json({error:"Please Fill all the field"})
     }
     else
     {
@@ -47,7 +47,7 @@ router.post("/login",(req,res)=>{
     const{email,password}=req.body;
     if(!email || !password)
     {
-        res.status(422).json({message:"All fields should be filled"})
+        res.status(422).json({error:"All fields should be filled"})
     }
     else
     {
@@ -60,17 +60,18 @@ router.post("/login",(req,res)=>{
         //  res.json({message:"user Logged in sucessfully",saveduser})
 
                         const token=jwt.sign({_id:saveduser._id},JWTSECRET)
-                        res.json({token})
+                        const{_id,name ,email}=saveduser
+                        res.json({token ,user:{_id,name ,email}})
                     }
                     else
                     {
-                        res.json({message:"Invalid username or password"})
+                        res.json({error:"Invalid username or password"})
                     }
                })
             }
             else
             {
-                res.json({message:"Invalid username or password"})
+                res.json({error:"Invalid username or password"})
             }
         })
     }
