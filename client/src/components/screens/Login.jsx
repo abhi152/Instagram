@@ -39,6 +39,8 @@ const Login = () => {
             else 
             {
                 M.toast({html:"Logged in Suucesfully",classes:"#1e88e5 blue darken-1"})
+                localStorage.setItem("jwt",data.token)
+                localStorage.setItem("user",JSON.stringify(data.user))
                 console.log(data.token)
                 history.push("/")
             }
